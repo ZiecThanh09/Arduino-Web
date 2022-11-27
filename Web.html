@@ -25,6 +25,7 @@
                         <th>STT</th>
                         <th>IP Address</th>
                         <th>Content</th>
+                        <th>Location</th>
                     </thead>
                     <tbody id="tbody1"></tbody>
                 </table>
@@ -62,19 +63,22 @@
         var ipbox = document.getElementById('IPbox');
         var delBtn = document.getElementById('Delbtn');
 
-        function AddItemToTable(ip, content) {
+        function AddItemToTable(ip, content, location) {
             let trow = document.createElement("tr");
             let td1 = document.createElement('td');
             let td2 = document.createElement('td');
             let td3 = document.createElement('td');
+            let td4 = document.createElement('td');
 
             td1.innerHTML = ++stdNo;
             td2.innerHTML = ip;
             td3.innerHTML = content;
+            td4.innerHTML = location;
 
             trow.appendChild(td1);
             trow.appendChild(td2);
             trow.appendChild(td3);
+            trow.appendChild(td4);
 
             tbody.appendChild(trow);
         }
@@ -86,11 +90,11 @@
             get(child(dbRef, "Du_bao_thoi_tiet"))
             .then((Devices)=>{
                 Devices.forEach(element => {
-                    var key = element.key; 
+                    var key = element.key;
                     for (let i = 0; i < 3; i++ ) {
                         key = key.replace('z', '.');
                     }
-                    AddItemToTable(key, element.val());
+                    AddItemToTable(key, element.val().data, element.val().location);
                 })
             })
         }
@@ -101,9 +105,11 @@
             get(child(dbRef, "Du_bao_thoi_tiet"))
             .then((snapshot)=>{
                 var devices = [];
+
                 snapshot.forEach(childSnapshot => {
                     devices.push(childSnapshot.val());
                 });
+
                 AddAllTitemsToTable(devices);
             });
         }
@@ -123,12 +129,11 @@
         function DeleteData() {
             if (ipbox.value != "") {
                 var value = ipbox.value; 
-                const dbRef = ref(db);
 
                 for (let i = 0; i < 3; i++ ) {
                     value = value.replace('.', 'z');
                 }
-
+                
                 remove(ref(db, "Du_bao_thoi_tiet/" + value))
                 .then(()=>{
                     alert("data removed successfully");
