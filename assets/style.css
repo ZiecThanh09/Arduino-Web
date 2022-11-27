@@ -1,0 +1,89 @@
+/* Reset CSS */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#header {
+    height: 60px;
+    background-color: rgb(42, 169, 219);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#header .title {
+    color: white;
+    text-decoration: none;
+    line-height: 60px;
+    padding: 0 24px;
+    display: inline-block;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 500;
+    letter-spacing: 4px;
+}
+
+#content .title {
+    width: 500px;
+    padding: 64px 0 15px 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 50px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 4px;
+}
+
+#content .details {
+    width: 500px;
+    padding-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+    font-weight: 50;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+#content .list-of-arduino {
+    border-collapse: collapse;
+    width: 85%;
+    margin: auto;
+}
+
+#content .list-of-arduino th {
+    text-align: center;
+}
+  
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#content .del-func {
+    display: flex;
+    justify-content:center;
+    padding-top: 30px;
+}
+
+#content .del-func label {
+    margin-right: 9px;
+}
+
+#content .del-func input {
+    margin-right: 9px;
+}
+
+#content .del-func button {
+    padding: 0 5px;
+    border-width: 1px;
+}
+
+#content .del-func button:hover {
+    background-color: #dddddd;
+}
